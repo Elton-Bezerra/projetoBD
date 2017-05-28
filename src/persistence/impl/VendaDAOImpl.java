@@ -133,10 +133,44 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 		}
 		return null;
 	}
+	@SuppressWarnings("null")
 	@Override
 	public List<Venda> listarTodos() {
-		// TODO Auto-generated method stub
+		String sql = "select * from Venda";
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			
+			ResultSet rs =	stmt.executeQuery();
+			
+			list.clear();
+			
+			List<ItemVenda> listaItens = null;
+			
+			while(rs.next()){
+				ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
+				ItemVenda iv =  ivdao.searchById(rs.getInt("itens"));
+				ClienteDAOImpl cdao = new ClienteDAOImpl();
+				Cliente c = cdao.searchById(rs.getInt("cliente"));
+				listaItens.add(iv);
+				Venda v = new Venda();
+				v.setCliente(c);
+				v.setDataVenda(rs.getDate("dataVenda"));
+				v.setId(rs.getInt("id"));
+				v.setValorTotal(rs.getDouble("valorTotal"));
+				v.setItens(listaItens);
+				
+				list.add(v);
+			}
+			
+			return list;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
+
 	}
 	
 
