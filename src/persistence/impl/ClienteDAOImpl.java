@@ -121,6 +121,7 @@ public class ClienteDAOImpl implements IDAOImpl<Cliente>{
 			PreparedStatement stmt = con.prepareStatement(sql);			
 			ResultSet rs = stmt.executeQuery();
 			
+			list.clear();
 			while(rs.next()){
 				Cliente c = new Cliente();
 				

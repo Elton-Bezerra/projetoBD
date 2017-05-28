@@ -110,7 +110,7 @@ public class FabricanteDAOImpl implements IDAOImpl<Fabricante> {
 			PreparedStatement stmt = con.prepareStatement(sql);	
 			
 			ResultSet rs = stmt.executeQuery();
-			
+			list.clear();
 			while(rs.next()){
 				Fabricante f = new Fabricante();
 				f.setCnpj(rs.getInt("cnpj"));

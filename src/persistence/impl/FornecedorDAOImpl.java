@@ -111,7 +111,7 @@ public class FornecedorDAOImpl implements IDAOImpl<Fornecedor>{
 			PreparedStatement stmt = con.prepareStatement(sql);	
 			
 			ResultSet rs = stmt.executeQuery();
-			
+			list.clear();
 			while(rs.next()){
 				Fornecedor f = new Fornecedor();
 				f.setCnpj(rs.getInt("cnpj"));

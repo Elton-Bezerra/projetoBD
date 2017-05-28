@@ -130,7 +130,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			PreparedStatement stmt = con.prepareStatement(sql);
 			
 			ResultSet rs = stmt.executeQuery();
-			
+			list.clear();
 			while(rs.next()){
 				Peca p = new Peca();
 				FabricanteDAOImpl fdao = new FabricanteDAOImpl();
