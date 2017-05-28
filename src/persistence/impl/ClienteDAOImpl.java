@@ -95,17 +95,17 @@ public class ClienteDAOImpl implements IDAOImpl<Cliente>{
 			stmt.setInt(1, id);
 			
 			ResultSet rs = stmt.executeQuery();
-			Cliente c = null;
 			while(rs.next()){
-				c = new Cliente();
+				Cliente c = new Cliente();
 				
 				c.setCpf(rs.getInt("cpf"));
 				c.setNome(rs.getString("nome"));
 				c.setTelefone(rs.getString("telefone"));
 				c.setLogradouro(rs.getString("logradouro"));
-				c.setNumero(rs.getInt("numero"));				
+				c.setNumero(rs.getInt("numero"));
+				
+				return c;
 			}
-			return c;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

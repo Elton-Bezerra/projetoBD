@@ -77,14 +77,15 @@ public class MontadoraDAOImpl implements IDAOImpl<Montadora>{
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-			Montadora m = null;
 			while(rs.next()){
-				m = new Montadora();
+				Montadora m = new Montadora();
 				m.setId(rs.getInt("id"));
 				m.setNome(rs.getString("nome"));
 				m.setDescricao(rs.getString("descricao"));
+				
+				return m;
 			}			
-			return m;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

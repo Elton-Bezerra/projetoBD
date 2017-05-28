@@ -96,9 +96,9 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			stmt.setInt(1, id);
 			
 			ResultSet rs = stmt.executeQuery();
-			Peca p = null;
+			
 			while(rs.next()){
-				p = new Peca();
+				Peca p = new Peca();
 				FabricanteDAOImpl fdao = new FabricanteDAOImpl();
 				FornecedorDAOImpl fodao = new FornecedorDAOImpl();
 				CarroDAOImpl cdao = new CarroDAOImpl();
@@ -112,9 +112,9 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 				p.setFornecedor(fodao.searchById(rs.getInt("fornecedor")));
 				p.setCarro(cdao.searchById(rs.getInt("carro")));
 				
-				
+				return p;
 			}
-			return p;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
