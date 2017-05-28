@@ -2,13 +2,13 @@ package model;
 public class Fabricante {
 
 	
-	private String cnpj;
+	private int cnpj;
 	private String nome;
 	
-	public String getCnpj() {
+	public int getCnpj() {
 		return cnpj;
 	}
-	public void setCnpj(String cnpj) {
+	public void setCnpj(int cnpj) {
 		this.cnpj = cnpj;
 	}
 	public String getNome() {
