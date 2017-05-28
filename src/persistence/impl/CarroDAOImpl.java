@@ -14,6 +14,7 @@ public class CarroDAOImpl implements IDAOImpl<Carro>{
 
 	GenericDAO gd;
 	Connection con;
+	private List<Carro> list;
 	public CarroDAOImpl(){
 		con = gd.getConnection();
 	}
@@ -102,8 +103,30 @@ public class CarroDAOImpl implements IDAOImpl<Carro>{
 	}
 	@Override
 	public List<Carro> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "Select * from Carro";
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			list.clear();
+			while(rs.next()){
+				Carro c = new Carro();
+				MontadoraDAOImpl mdao = new MontadoraDAOImpl();
+				Montadora m = new Montadora();
+				m = mdao.searchById(rs.getInt("montadora"));
+				c.setId(rs.getInt("id"));
+				c.setNome(rs.getString("nome"));
+				c.setAno(rs.getInt("ano"));				
+				c.setMontadora(m);
+				
+				list.add(c);				
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 }
