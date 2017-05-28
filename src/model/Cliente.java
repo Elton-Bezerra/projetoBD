@@ -1,16 +1,16 @@
 package model;
 public class Cliente {
 
-	private String cpf;
+	private int cpf;
 	private String nome;
 	private String telefone;
 	private String logradouro;
 	private int numero;
 	
-	public String getCpf() {
+	public int getCpf() {
 		return cpf;
 	}
-	public void setCpf(String cpf) {
+	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
 	public String getNome() {
