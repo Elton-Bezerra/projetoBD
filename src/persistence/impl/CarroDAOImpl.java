@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import model.Carro;
 import model.Montadora;
@@ -97,6 +98,11 @@ public class CarroDAOImpl implements IDAOImpl<Carro>{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
+	}
+	@Override
+	public List<Carro> listarTodos() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

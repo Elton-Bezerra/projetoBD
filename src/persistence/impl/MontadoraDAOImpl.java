@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import model.Montadora;
 import persistence.GenericDAO;
@@ -53,6 +54,11 @@ public class MontadoraDAOImpl implements IDAOImpl<Montadora>{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
+	}
+	@Override
+	public List<Montadora> listarTodos() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
