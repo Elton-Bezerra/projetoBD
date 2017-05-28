@@ -1,4 +1,4 @@
-package persistence;
+package persistence.impl;
 
 public interface IDAOImpl<T> {
 	public void insert(T classe);
