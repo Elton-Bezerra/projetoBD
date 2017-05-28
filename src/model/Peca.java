@@ -1,4 +1,7 @@
 package model;
+
+import java.util.Date;
+
 public class Peca {
 
 	private int id;
@@ -6,9 +9,11 @@ public class Peca {
 	private String nome;
 	private String aplicacao;
 	private double valor;
+	private Date dtAdc;
 	private Fabricante fabricante;
 	private Fornecedor fornecedor;
 	private Carro carro;
+	
 	public int getId() {
 		return id;
 	}
@@ -56,6 +61,12 @@ public class Peca {
 	}
 	public void setCarro(Carro carro) {
 		this.carro = carro;
+	}
+	public Date getDtAdc() {
+		return dtAdc;
+	}
+	public void setDtAdc(Date dtAdc) {
+		this.dtAdc = dtAdc;
 	}
 	
 	
