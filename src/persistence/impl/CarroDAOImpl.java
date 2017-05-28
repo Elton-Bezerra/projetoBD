@@ -82,9 +82,9 @@ public class CarroDAOImpl implements IDAOImpl<Carro>{
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			
-			Carro c = null;
+			
 			while(rs.next()){
-				c = new Carro();
+				Carro c = new Carro();
 				MontadoraDAOImpl mdao = new MontadoraDAOImpl();
 				Montadora m = new Montadora();
 				m = mdao.searchById(rs.getInt("montadora"));
@@ -93,8 +93,10 @@ public class CarroDAOImpl implements IDAOImpl<Carro>{
 				c.setNome(rs.getString("nome"));
 				c.setAno(rs.getInt("ano"));				
 				c.setMontadora(m);
+				
+				return c;
 			}
-			return c;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
