@@ -4,8 +4,8 @@ import java.util.Date;
 public class Carro {
 
 	private int id;
-	private char nome;
-	private Date ano;
+	private String nome;
+	private int ano;
 	private Montadora montadora;
 	
 	public int getId() {
@@ -14,16 +14,16 @@ public class Carro {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public char getNome() {
+	public String getNome() {
 		return nome;
 	}
-	public void setNome(char nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Date getAno() {
+	public int getAno() {
 		return ano;
 	}
-	public void setAno(Date ano) {
+	public void setAno(int ano) {
 		this.ano = ano;
 	}
 	public Montadora getMontadora() {
