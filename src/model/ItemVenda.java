@@ -28,7 +28,7 @@ public class ItemVenda {
 		return subTotal;
 	}
 	public void setSubTotal(double subTotal) {
-		this.subTotal = subTotal;
+		this.subTotal = this.getPeca().getValor() * qtd;
 	}
 	
 	
