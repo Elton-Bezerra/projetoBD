@@ -7,7 +7,6 @@ public class Venda {
 
 	private int id;
 	private Date dataVenda;
-	private int quantidade;
 	private double valorTotal;
 	private Cliente cliente;
 	private List<ItemVenda> itens;
@@ -18,12 +17,7 @@ public class Venda {
 	public void setDataVenda(Date dataVenda) {
 		this.dataVenda = dataVenda;
 	}
-	public int getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
+	
 	public double getValorTotal() {
 		return valorTotal;
 	}

@@ -92,40 +92,47 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 
 	@Override
 	public Venda searchById(int id) {
+		return null;
+	}
+
+	@SuppressWarnings("null")
+	public List<Venda> searchByIds(int id){
 		String sql = "select * from Venda where id = ?";
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, id);
 			
-			ResultSet rs = stmt.executeQuery();
+			ResultSet rs =	stmt.executeQuery();
 			
-			/*while(rs.next()){
-				Venda v = new Venda();
+			list.clear();
+			
+			List<ItemVenda> listaItens = null;
+			
+			while(rs.next()){
+				ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
+				ItemVenda iv =  ivdao.searchById(rs.getInt("itens"));
 				ClienteDAOImpl cdao = new ClienteDAOImpl();
 				Cliente c = cdao.searchById(rs.getInt("cliente"));
-				
-				List<ItemVenda> listaVenda;
-				ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
-				for(ItemVenda iv: listaVenda){
-					
-				}
-				ItemVenda iv = ivdao.searchById(rs.getInt("itens"));
-				
+				listaItens.add(iv);
+				Venda v = new Venda();
+				v.setCliente(c);
 				v.setDataVenda(rs.getDate("dataVenda"));
 				v.setId(rs.getInt("id"));
 				v.setValorTotal(rs.getDouble("valorTotal"));
-				v.setCliente(c);
-				v.setItens(iv);
-				*/
+				v.setItens(listaItens);
+				
+				list.add(v);
 			}
+			
+			return list;
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-
-	
 	@Override
 	public List<Venda> listarTodos() {
 		// TODO Auto-generated method stub
