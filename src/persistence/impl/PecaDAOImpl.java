@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import model.Peca;
@@ -14,14 +15,14 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 	GenericDAO gd;
 	Connection con;
 	private List<Peca> list;
-	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	public PecaDAOImpl() {
 		con = gd.getConnection();		
 	}
 	@Override
 	public void insert(Peca classe) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into Peca values (?,?,?,?,?,?,?)";
+		String sql = "Insert into Peca values (?,?,?,?,?,?,?,?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -29,9 +30,10 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			stmt.setString(2, classe.getNome());
 			stmt.setString(3, classe.getAplicacao());
 			stmt.setDouble(4, classe.getValor());
-			stmt.setInt(5, classe.getFabricante().getCnpj());
-			stmt.setInt(6, classe.getFornecedor().getCnpj());
-			stmt.setInt(7, classe.getCarro().getId());
+			stmt.setString(5, sdf.format(classe.getDtAdc()));
+			stmt.setInt(6, classe.getFabricante().getCnpj());
+			stmt.setInt(7, classe.getFornecedor().getCnpj());
+			stmt.setInt(8, classe.getCarro().getId());
 			
 			if(stmt.executeUpdate() > 0 ){
 				System.out.println("Peça inserida.");
@@ -46,7 +48,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 	public void update(Peca classe) {
 		// TODO Auto-generated method stub
 		String sql = "update Peca set "
-				+ "tipo = ?, nome = ?, aplicacao = ?, valor = ?, fabricante = ? "
+				+ "tipo = ?, nome = ?, aplicacao = ?, valor = ?, set dtAdc = ?, fabricante = ? "
 				+ "forenecedor = ?, carro = ? where id = ?";
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -54,10 +56,11 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			stmt.setString(2, classe.getNome());
 			stmt.setString(3, classe.getAplicacao());
 			stmt.setDouble(4, classe.getValor());
-			stmt.setInt(5, classe.getFabricante().getCnpj());
-			stmt.setInt(6, classe.getFornecedor().getCnpj());
-			stmt.setInt(7, classe.getCarro().getId());
-			stmt.setInt(8,  classe.getId());
+			stmt.setString(5, sdf.format(classe.getDtAdc()));
+			stmt.setInt(6, classe.getFabricante().getCnpj());
+			stmt.setInt(7, classe.getFornecedor().getCnpj());
+			stmt.setInt(8, classe.getCarro().getId());
+			stmt.setInt(9,  classe.getId());
 			
 			if(stmt.executeUpdate() > 0){
 				System.out.println("Peça atualizada.");
@@ -108,6 +111,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 				p.setNome(rs.getString("nome"));
 				p.setAplicacao(rs.getString("aplicacao"));
 				p.setValor(rs.getDouble("valor"));
+				p.setDtAdc(rs.getDate("dtAdc"));
 				p.setFabricante(fdao.searchById(rs.getInt("fabricante")));
 				p.setFornecedor(fodao.searchById(rs.getInt("fornecedor")));
 				p.setCarro(cdao.searchById(rs.getInt("carro")));
@@ -142,6 +146,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 				p.setNome(rs.getString("nome"));
 				p.setAplicacao(rs.getString("aplicacao"));
 				p.setValor(rs.getDouble("valor"));
+				p.setDtAdc(rs.getDate("dtAdc"));
 				p.setFabricante(fdao.searchById(rs.getInt("fabricante")));
 				p.setFornecedor(fodao.searchById(rs.getInt("fornecedor")));
 				p.setCarro(cdao.searchById(rs.getInt("carro")));
