@@ -124,7 +124,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 
 	@Override
 	public List<Peca> listarTodos() {
-String sql = "select * from Peca";
+		String sql = "select * from Peca";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
