@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Carro;
+import model.Montadora;
 import persistence.GenericDAO;
 
 public class CarroDAOImpl implements IDAOImpl<Carro>{
@@ -81,11 +82,15 @@ public class CarroDAOImpl implements IDAOImpl<Carro>{
 			
 			Carro c = null;
 			while(rs.next()){
+				c = new Carro();
+				MontadoraDAOImpl mdao = new MontadoraDAOImpl();
+				Montadora m = new Montadora();
+				m = mdao.searchById(rs.getInt("montadora"));
+				
 				c.setId(rs.getInt("id"));
 				c.setNome(rs.getString("nome"));
-				c.setAno(rs.getInt("ano"));
-				
-				//c.setMontadora(rs.getInt("montadora"));
+				c.setAno(rs.getInt("ano"));				
+				c.setMontadora(m);
 			}
 			return c;
 		} catch (SQLException e) {
