@@ -56,6 +56,7 @@ public class TelaCarro extends JInternalFrame {
 		btnNewButton.setBounds(12, 204, 117, 25);
 		getContentPane().add(btnNewButton);
 		
+		
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.setBounds(173, 204, 117, 25);
 		getContentPane().add(btnNewButton_1);
