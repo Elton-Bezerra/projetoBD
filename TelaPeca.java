@@ -17,8 +17,10 @@ public class TelaPeca extends JInternalFrame {
 	private JTextField textField_1;
 	private JTable table;
 
+	
+	
 	/**
-	 * Launch the application.ghjfhgjg
+	 * Launch the application.ghjfhgjgsysout
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
