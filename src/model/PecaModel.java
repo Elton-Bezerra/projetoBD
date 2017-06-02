@@ -109,6 +109,11 @@ public class PecaModel implements TableModel {
 		PecaDAOImpl pdao = new PecaDAOImpl();
 		lista = pdao.listarTodos();
 	}
+	
+	public void deletar(Peca p){
+		PecaDAOImpl pdao = new PecaDAOImpl();
+		pdao.delete(p);
+	}
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub

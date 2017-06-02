@@ -130,6 +130,7 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		getContentPane().add(btnPesquisarPorNome);
 		
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(this);
 		btnExcluir.setBounds(485, 21, 93, 23);
 		getContentPane().add(btnExcluir);
 		
@@ -187,11 +188,15 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 			table.invalidate();
 			table.revalidate();
 			table.repaint();
-		}			
+		} else if ("Excluir".equals(cmd)){
+			Peca p = formToPeca();
+			model.deletar(p);
+		}
 	}
 	
 	public Peca formToPeca(){
 		Peca p = new Peca();
+		p.setId(model.getPecaByRow(table.getSelectedRow()).getId());
 		p.setTipo(this.tfTipo.getText());
 		p.setNome(this.tfNome.getText());
 		p.setAplicacao(this.tfAplicacao.getText());
