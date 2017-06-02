@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.ItemVenda;
@@ -12,11 +13,12 @@ import persistence.GenericDAO;
 
 public class ItemVendaDAOImpl implements IDAOImpl<ItemVenda>{
 
-	GenericDAO gd;
+	
 	Connection con;
-	List<ItemVenda> list;
+	List<ItemVenda> list = new ArrayList<ItemVenda>();
 	
 	public ItemVendaDAOImpl() {
+		GenericDAO gd = GenericDAO.getInstance();
 		con = gd.getConnection();
 	}
 	

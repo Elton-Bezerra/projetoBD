@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -11,16 +14,20 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import model.ItemVendaModel;
+import model.Peca;
+import model.Venda;
+import model.VendaModel;
 
 import javax.swing.JComboBox;
 
-public class TelaVenda extends JInternalFrame {
+public class TelaVenda extends JInternalFrame implements ActionListener {
 	private JTextField textField_1;
 	private JTable tableItemVenda;
 	private JTextField tfValorTotal;
 	private ItemVendaModel model = new ItemVendaModel();
 	private JTextField tfNVenda;
 	private JTable tableVenda;
+	private VendaModel vendaModel = new VendaModel();
 
 	/**
 	 * Launch the application.fghfghf
@@ -73,9 +80,10 @@ public class TelaVenda extends JInternalFrame {
 		btnAdicionarItem.setBounds(218, 24, 41, 20);
 		getContentPane().add(btnAdicionarItem);
 		
-		JButton btnNewButton_3 = new JButton("Cadastrar Venda");
-		btnNewButton_3.setBounds(12, 139, 117, 25);
-		getContentPane().add(btnNewButton_3);
+		JButton btnCadastrarVenda = new JButton("Cadastrar Venda");
+		btnCadastrarVenda.addActionListener(this);
+		btnCadastrarVenda.setBounds(12, 139, 117, 25);
+		getContentPane().add(btnCadastrarVenda);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.setBounds(290, 139, 117, 25);
@@ -109,7 +117,31 @@ public class TelaVenda extends JInternalFrame {
 		getContentPane().add(spVenda);
 		
 		tableVenda = new JTable();
+		tableVenda.setModel(vendaModel);
 		spVenda.setViewportView(tableVenda);
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String cmd = e.getActionCommand();
+		if("Cadastrar Venda".equals(cmd)){
+			
+		}
+	}
+	
+	public Venda formToVenda(){
+		Venda v = new Venda();
+		v.setValorTotal(calcularTotal());		
+		return v;
+	}
+	
+	
+	public double calcularTotal(){
+		double val = 0;
+		
+		return val;
+		
 	}
 }

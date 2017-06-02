@@ -8,7 +8,7 @@ public class Venda {
 	private int id;
 	private Date dataVenda;
 	private double valorTotal;
-	private List<ItemVenda> itens;
+
 	
 	public Date getDataVenda() {
 		return dataVenda;
@@ -17,16 +17,13 @@ public class Venda {
 		this.dataVenda = dataVenda;
 	}
 	
+	public void setValorTotal(double valorTotal){
+		this.valorTotal = valorTotal;
+	}
 	public double getValorTotal() {
 		return valorTotal;
 	}
-	public List<ItemVenda> getItens() {
-		return itens;
-	}
-	public void setItens(List<ItemVenda> itens) {
-		this.itens = itens;
-		
-	}
+	
 	public int getId() {
 		return id;
 	}

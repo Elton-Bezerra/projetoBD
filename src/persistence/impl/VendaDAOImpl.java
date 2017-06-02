@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.ItemVenda;
@@ -13,30 +14,26 @@ import persistence.GenericDAO;
 
 public class VendaDAOImpl implements IDAOImpl<Venda>{
 
-	GenericDAO gd;
+	
 	Connection con;
-	private List<Venda> list;
+	private List<Venda> list = new ArrayList<Venda>();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public VendaDAOImpl() {
+		GenericDAO gd = GenericDAO.getInstance();
 		con = gd.getConnection();
 	}
 	
 	@Override
 	public void insert(Venda classe) {
 		// TODO Auto-generated method stub
-		String sql = "insert into Venda values (?,?,?,?)";
+		String sql = "insert into Venda (valorTotal) values (?)";
 		
 		try {					
 			PreparedStatement stmt = con.prepareStatement(sql);
-			for(ItemVenda iv: classe.getItens()){				
-				stmt.setString(1, sdf.format(classe.getDataVenda()));
-				stmt.setDouble(2, classe.getValorTotal());
-				stmt.setInt(4, iv.getId());
-				
-				if(stmt.executeUpdate() > 0){
-					System.out.println("Venda inserida.");
-				}
+			stmt.setDouble(1, classe.getValorTotal());	
+			if(stmt.executeUpdate() > 0){
+				System.out.println("Venda inserida.");
 			}
 			
 		} catch (SQLException e) {
@@ -53,15 +50,13 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			for(ItemVenda iv: classe.getItens()){				
-				stmt.setDouble(1, classe.getValorTotal());
-				stmt.setInt(3, iv.getId());
-				stmt.setInt(4, classe.getId());
+			stmt.setDouble(1, classe.getValorTotal());
+			stmt.setInt(4, classe.getId());
 				
-				if(stmt.executeUpdate() > 0){
-					System.out.println("Venda atualizada.");
-				}
+			if(stmt.executeUpdate() > 0){
+				System.out.println("Venda atualizada.");
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -112,7 +107,6 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 				Venda v = new Venda();
 				v.setDataVenda(rs.getDate("dataVenda"));
 				v.setId(rs.getInt("id"));
-				v.setItens(listaItens);
 				
 				list.add(v);
 			}
@@ -140,13 +134,10 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 			List<ItemVenda> listaItens = null;
 			
 			while(rs.next()){
-				ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
-				ItemVenda iv =  ivdao.searchById(rs.getInt("itens"));
-				listaItens.add(iv);
 				Venda v = new Venda();
 				v.setDataVenda(rs.getDate("dataVenda"));
 				v.setId(rs.getInt("id"));
-				v.setItens(listaItens);
+				v.setValorTotal(rs.getDouble("valorTotal"));
 				
 				list.add(v);
 			}
