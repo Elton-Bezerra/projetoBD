@@ -5,18 +5,23 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import java.awt.ScrollPane;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import model.Carro;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 import java.awt.event.ActionEvent;
 
 public class TelaPeca extends JInternalFrame {
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfNome;
+	private JTextField tfDesc;
 	private JTable table;
 
 	
@@ -28,6 +33,7 @@ public class TelaPeca extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 					TelaPeca frame = new TelaPeca();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -41,6 +47,8 @@ public class TelaPeca extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public TelaPeca() {
+		setClosable(true);
+		
 		setTitle("Pe\u00E7as");
 		setBounds(100, 100, 600, 432);
 		getContentPane().setLayout(null);
@@ -61,23 +69,27 @@ public class TelaPeca extends JInternalFrame {
 		lblFabricante.setBounds(10, 164, 93, 15);
 		getContentPane().add(lblFabricante);
 		
-		textField = new JTextField();
-		textField.setBounds(102, 22, 113, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		tfNome = new JTextField();
+		tfNome.setBounds(102, 22, 113, 19);
+		getContentPane().add(tfNome);
+		tfNome.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(102, 69, 113, 19);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		tfDesc = new JTextField();
+		tfDesc.setBounds(102, 69, 113, 19);
+		getContentPane().add(tfDesc);
+		tfDesc.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(101, 107, 114, 24);
-		getContentPane().add(comboBox);
+		JComboBox cbCarro = new JComboBox();
+		cbCarro.setBounds(101, 107, 114, 24);
+		for(Carro c: Carro.values()){
+			cbCarro.addItem(c.name());
+		}
+		getContentPane().add(cbCarro);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(102, 159, 114, 24);
-		getContentPane().add(comboBox_2);
+		
+		JComboBox cbFabricante = new JComboBox();
+		cbFabricante.setBounds(102, 159, 114, 24);
+		getContentPane().add(cbFabricante);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 243, 566, 121);
@@ -116,4 +128,6 @@ public class TelaPeca extends JInternalFrame {
 		
 
 	}
+	
+	
 }

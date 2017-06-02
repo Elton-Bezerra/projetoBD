@@ -41,6 +41,7 @@ public class TelaMenu extends JFrame {
 	 */
 	public TelaMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 450, 384);
 		
 		JMenuBar menuBar = new JMenuBar();
