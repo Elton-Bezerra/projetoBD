@@ -147,5 +147,35 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 		}
 		return null;
 	}
+	
+	
+	public List<Peca> pesquisarPorNome(String nome) {
+		String sql = "select * from Peca where nome like ?";
+		
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, "%" + nome + "%");
+			ResultSet rs = stmt.executeQuery();
+			list.clear();
+			while(rs.next()){
+				Peca p = new Peca();
+				
+				p.setId(rs.getInt("id"));
+				p.setTipo(rs.getString("tipo"));
+				p.setNome(rs.getString("nome"));
+				p.setAplicacao(rs.getString("aplicacao"));
+				p.setValor(rs.getDouble("valor"));
+				p.setDtAdc(rs.getDate("dtAdc"));
+				p.setCarro(rs.getInt("carro"));
+				p.setFabricante(rs.getInt("fabricante"));
+				list.add(p);
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

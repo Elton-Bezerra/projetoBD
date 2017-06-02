@@ -107,7 +107,7 @@ public class PecaModel implements TableModel {
 	
 	public void pesquisarPorNome(String nome){
 		PecaDAOImpl pdao = new PecaDAOImpl();
-		lista = pdao.listarTodos();
+		lista = pdao.pesquisarPorNome(nome);
 	}
 	
 	public void deletar(Peca p){
