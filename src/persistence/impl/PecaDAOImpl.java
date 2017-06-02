@@ -12,7 +12,7 @@ import persistence.GenericDAO;
 
 public class PecaDAOImpl implements IDAOImpl<Peca>{
 
-	GenericDAO gd;
+	GenericDAO gd = new GenericDAO();
 	Connection con;
 	private List<Peca> list;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -22,7 +22,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 	@Override
 	public void insert(Peca classe) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into Peca values (?,?,?,?,?,?,?,?)";
+		String sql = "Insert into Peca (tipo, nome, aplicacao, valor, dtAdc, fabricante, carro) values (?,?,?,?,?,?,?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -31,6 +31,9 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			stmt.setString(3, classe.getAplicacao());
 			stmt.setDouble(4, classe.getValor());
 			stmt.setString(5, sdf.format(classe.getDtAdc()));
+			stmt.setInt(6, classe.getFabricante());
+			stmt.setInt(7, classe.getCarro());
+			
 			
 			if(stmt.executeUpdate() > 0 ){
 				System.out.println("Peça inserida.");

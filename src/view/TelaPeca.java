@@ -6,25 +6,39 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import java.awt.ScrollPane;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 
 import model.Carro;
+import model.Fabricante;
+import model.Peca;
+import model.PecaModel;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.beans.PropertyVetoException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
-public class TelaPeca extends JInternalFrame {
+public class TelaPeca extends JInternalFrame implements ActionListener, ListSelectionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField tfNome;
-	private JTextField tfDesc;
+	private JTextField tfAplicacao;
 	private JTable table;
-
-	
+	private PecaModel model = new PecaModel();
+	private JTextField tfTipo;
+	private JTextField tfValor;
+	private JComboBox cbCarro;
+	private JComboBox cbFabricante;
+	private JTextField tfData;
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	/**
 	 * Launch the application.ghjfhgjgsysout
@@ -58,15 +72,15 @@ public class TelaPeca extends JInternalFrame {
 		getContentPane().add(lblNome);
 		
 		JLabel lblCarro = new JLabel("Carro:");
-		lblCarro.setBounds(12, 112, 70, 15);
+		lblCarro.setBounds(14, 161, 70, 15);
 		getContentPane().add(lblCarro);
 		
-		JLabel lblDesc = new JLabel("Descri\u00E7\u00E3o:");
-		lblDesc.setBounds(12, 72, 80, 15);
-		getContentPane().add(lblDesc);
+		JLabel lblAplicacao = new JLabel("Aplica\u00E7\u00E3o:");
+		lblAplicacao.setBounds(12, 72, 80, 15);
+		getContentPane().add(lblAplicacao);
 		
 		JLabel lblFabricante = new JLabel("Fabricante:");
-		lblFabricante.setBounds(10, 164, 93, 15);
+		lblFabricante.setBounds(12, 213, 93, 15);
 		getContentPane().add(lblFabricante);
 		
 		tfNome = new JTextField();
@@ -74,50 +88,42 @@ public class TelaPeca extends JInternalFrame {
 		getContentPane().add(tfNome);
 		tfNome.setColumns(10);
 		
-		tfDesc = new JTextField();
-		tfDesc.setBounds(102, 69, 113, 19);
-		getContentPane().add(tfDesc);
-		tfDesc.setColumns(10);
+		tfAplicacao = new JTextField();
+		tfAplicacao.setBounds(102, 69, 113, 19);
+		getContentPane().add(tfAplicacao);
+		tfAplicacao.setColumns(10);
 		
-		JComboBox cbCarro = new JComboBox();
-		cbCarro.setBounds(101, 107, 114, 24);
+		cbCarro = new JComboBox();
+		cbCarro.setBounds(103, 156, 114, 24);
 		for(Carro c: Carro.values()){
 			cbCarro.addItem(c.name());
 		}
 		getContentPane().add(cbCarro);
 		
 		
-		JComboBox cbFabricante = new JComboBox();
-		cbFabricante.setBounds(102, 159, 114, 24);
+		cbFabricante = new JComboBox();
+		cbFabricante.setBounds(104, 208, 114, 24);
+		for(Fabricante f: Fabricante.values()){
+			cbFabricante.addItem(f.name());
+		}
 		getContentPane().add(cbFabricante);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 243, 566, 121);
 		getContentPane().add(scrollPane);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"Nome", "Descri\u00E7\u00E3o", "Carro", "Fabricante"
-			}
-		));
-		table.getColumnModel().getColumn(3).setPreferredWidth(79);
+		table = new JTable(model);
+		table.getSelectionModel().addListSelectionListener(this);
+		table.getColumnModel().getColumn(5).setPreferredWidth(79);
 		scrollPane.setViewportView(table);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(this);
 		btnCadastrar.setBounds(365, 20, 93, 25);
 		getContentPane().add(btnCadastrar);
 		
 		JButton btnPesquisarPorNome = new JButton("Pesquisar");
-		btnPesquisarPorNome.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnPesquisarPorNome.addActionListener(this);
 		btnPesquisarPorNome.setBounds(240, 20, 93, 25);
 		getContentPane().add(btnPesquisarPorNome);
 		
@@ -125,9 +131,76 @@ public class TelaPeca extends JInternalFrame {
 		btnExcluir.setBounds(485, 21, 93, 23);
 		getContentPane().add(btnExcluir);
 		
+		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setBounds(8, 109, 46, 14);
+		getContentPane().add(lblTipo);
+		
+		tfTipo = new JTextField();
+		tfTipo.setBounds(102, 106, 113, 20);
+		getContentPane().add(tfTipo);
+		tfTipo.setColumns(10);
+		
+		JLabel lblValor = new JLabel("Valor:");
+		lblValor.setBounds(240, 72, 46, 14);
+		getContentPane().add(lblValor);
+		
+		tfValor = new JTextField();
+		tfValor.setBounds(296, 69, 86, 20);
+		getContentPane().add(tfValor);
+		tfValor.setColumns(10);
+		
+		JLabel lblData = new JLabel("Data:");
+		lblData.setBounds(240, 109, 46, 14);
+		getContentPane().add(lblData);
+		
+		tfData = new JTextField();
+		tfData.setBounds(296, 106, 86, 20);
+		getContentPane().add(tfData);
+		tfData.setColumns(10);
+		
 		
 
 	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String cmd = e.getActionCommand();
+		if ("Cadastrar".equals(cmd)) { 
+			Peca p = formToPeca();
+			model.adicionar( p );
+			table.invalidate();
+			table.revalidate();
+			table.repaint();
+		} else if ("Pesquisar".equals(cmd)){				
+			//model.pesquisarPorNome(txtPaciente.getText());	
+			table.invalidate();
+			table.revalidate();
+			table.repaint();
+		}			
+	}
 	
-	
+	public Peca formToPeca(){
+		Peca p = new Peca();
+		p.setTipo(this.tfTipo.getText());
+		p.setNome(this.tfNome.getText());
+		p.setAplicacao(this.tfAplicacao.getText());
+		try{
+			p.setDtAdc(sdf.parse(this.tfData.getText()));
+		}catch (ParseException e){
+			e.printStackTrace();
+		}
+		
+		p.setValor(Double.parseDouble(this.tfValor.getText()));
+		p.setFabricante(this.cbFabricante.getSelectedIndex());
+		p.setCarro(this.cbCarro.getSelectedIndex());
+		
+		return p;
+	}
 }

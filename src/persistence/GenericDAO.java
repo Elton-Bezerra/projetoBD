@@ -24,12 +24,6 @@ public class GenericDAO implements IGenericDAO {
 		return con; 
 	}
 
-	public static void main(String[] args) {
-		GenericDAO gd = new GenericDAO();
-		Connection con = gd.getConnection();
-		
-	}
-
 	public void fechaConexao(){
 		try {
 			if(con!=null) con.close();

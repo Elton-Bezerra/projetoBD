@@ -10,6 +10,8 @@ public class Peca {
 	private String aplicacao;
 	private double valor;
 	private Date dtAdc;
+	private int carro;
+	private int fabricante;
 	
 	public int getId() {
 		return id;
@@ -46,6 +48,18 @@ public class Peca {
 	}
 	public void setDtAdc(Date dtAdc) {
 		this.dtAdc = dtAdc;
+	}
+	public int getCarro() {
+		return carro;
+	}
+	public void setCarro(int carro) {
+		this.carro = carro;
+	}
+	public int getFabricante() {
+		return fabricante;
+	}
+	public void setFabricante(int fabricante) {
+		this.fabricante = fabricante;
 	}
 	
 	
