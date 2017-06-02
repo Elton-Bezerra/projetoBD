@@ -18,6 +18,7 @@ public class VendaModel implements TableModel {
 		GenericDAO gd = GenericDAO.getInstance();
 		con = gd.getConnection();
 		
+		
 	}
 	@Override
 	public void addTableModelListener(TableModelListener l) {
