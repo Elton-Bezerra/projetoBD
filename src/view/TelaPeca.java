@@ -113,6 +113,8 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		getContentPane().add(scrollPane);
 		
 		table = new JTable(model);
+		
+		
 		table.getSelectionModel().addListSelectionListener(this);
 		table.getColumnModel().getColumn(5).setPreferredWidth(79);
 		scrollPane.setViewportView(table);
@@ -181,7 +183,7 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 			table.revalidate();
 			table.repaint();
 		} else if ("Pesquisar".equals(cmd)){				
-			//model.pesquisarPorNome(txtPaciente.getText());	
+			model.pesquisarPorNome(tfNome.getText());	
 			table.invalidate();
 			table.revalidate();
 			table.repaint();
@@ -213,8 +215,8 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 			tfData.setText(sdf.format(p.getDtAdc()));
 			tfTipo.setText(p.getTipo());
 			tfValor.setText(Double.toString(p.getValor()));
-			cbCarro.setSelectedItem(p.getCarro());
-			cbFabricante.setSelectedItem(p.getFabricante());
+			cbCarro.setSelectedIndex(p.getCarro());
+			cbFabricante.setSelectedIndex(p.getFabricante());			
 			
 		}
 	}

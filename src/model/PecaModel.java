@@ -20,6 +20,10 @@ public class PecaModel implements TableModel {
 	public PecaModel() {
 		// TODO Auto-generated constructor stub
 		con = gd.getConnection();
+		PecaDAOImpl pdao = new PecaDAOImpl();
+		lista = pdao.listarTodos();
+		
+		
 	}
 	@Override
 	public int getRowCount() {
@@ -100,6 +104,11 @@ public class PecaModel implements TableModel {
 		}
 	
 	}
+	
+	public void pesquisarPorNome(String nome){
+		PecaDAOImpl pdao = new PecaDAOImpl();
+		lista = pdao.listarTodos();
+	}
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
@@ -121,4 +130,6 @@ public class PecaModel implements TableModel {
 	public Peca getPecaByRow(int row){
 		return lista.get(row);
 	}
+	
+	
 }

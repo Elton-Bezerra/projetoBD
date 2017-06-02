@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Peca;
@@ -14,7 +15,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 
 	GenericDAO gd = new GenericDAO();
 	Connection con;
-	private List<Peca> list;
+	private List<Peca> list = new ArrayList<Peca>();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	public PecaDAOImpl() {
 		con = gd.getConnection();		
@@ -135,7 +136,8 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 				p.setAplicacao(rs.getString("aplicacao"));
 				p.setValor(rs.getDouble("valor"));
 				p.setDtAdc(rs.getDate("dtAdc"));
-				
+				p.setCarro(rs.getInt("carro"));
+				p.setFabricante(rs.getInt("fabricante"));
 				list.add(p);
 			}
 			return list;
