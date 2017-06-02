@@ -165,7 +165,9 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
-		
+		Peca p = model.getPecaByRow(table.getSelectedRow());
+		System.out.println("Selecionou" + table.getSelectedRow());
+		pecaToForm(p);
 	}
 
 	@Override
@@ -202,5 +204,18 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		p.setCarro(this.cbCarro.getSelectedIndex());
 		
 		return p;
+	}
+	
+	public void pecaToForm(Peca p){
+		if(p != null){
+			tfNome.setText(p.getNome());
+			tfAplicacao.setText(p.getAplicacao());
+			tfData.setText(sdf.format(p.getDtAdc()));
+			tfTipo.setText(p.getTipo());
+			tfValor.setText(Double.toString(p.getValor()));
+			cbCarro.setSelectedItem(p.getCarro());
+			cbFabricante.setSelectedItem(p.getFabricante());
+			
+		}
 	}
 }
