@@ -31,9 +31,6 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			stmt.setString(3, classe.getAplicacao());
 			stmt.setDouble(4, classe.getValor());
 			stmt.setString(5, sdf.format(classe.getDtAdc()));
-			stmt.setInt(6, classe.getFabricante().getCnpj());
-			stmt.setInt(7, classe.getFornecedor().getCnpj());
-			stmt.setInt(8, classe.getCarro().getId());
 			
 			if(stmt.executeUpdate() > 0 ){
 				System.out.println("Peça inserida.");
@@ -57,9 +54,6 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			stmt.setString(3, classe.getAplicacao());
 			stmt.setDouble(4, classe.getValor());
 			stmt.setString(5, sdf.format(classe.getDtAdc()));
-			stmt.setInt(6, classe.getFabricante().getCnpj());
-			stmt.setInt(7, classe.getFornecedor().getCnpj());
-			stmt.setInt(8, classe.getCarro().getId());
 			stmt.setInt(9,  classe.getId());
 			
 			if(stmt.executeUpdate() > 0){
@@ -102,9 +96,6 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			
 			while(rs.next()){
 				Peca p = new Peca();
-				FabricanteDAOImpl fdao = new FabricanteDAOImpl();
-				FornecedorDAOImpl fodao = new FornecedorDAOImpl();
-				CarroDAOImpl cdao = new CarroDAOImpl();
 				
 				p.setId(rs.getInt("id"));
 				p.setTipo(rs.getString("tipo"));
@@ -112,9 +103,6 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 				p.setAplicacao(rs.getString("aplicacao"));
 				p.setValor(rs.getDouble("valor"));
 				p.setDtAdc(rs.getDate("dtAdc"));
-				p.setFabricante(fdao.searchById(rs.getInt("fabricante")));
-				p.setFornecedor(fodao.searchById(rs.getInt("fornecedor")));
-				p.setCarro(cdao.searchById(rs.getInt("carro")));
 				
 				return p;
 			}
@@ -137,9 +125,6 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			list.clear();
 			while(rs.next()){
 				Peca p = new Peca();
-				FabricanteDAOImpl fdao = new FabricanteDAOImpl();
-				FornecedorDAOImpl fodao = new FornecedorDAOImpl();
-				CarroDAOImpl cdao = new CarroDAOImpl();
 				
 				p.setId(rs.getInt("id"));
 				p.setTipo(rs.getString("tipo"));
@@ -147,9 +132,6 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 				p.setAplicacao(rs.getString("aplicacao"));
 				p.setValor(rs.getDouble("valor"));
 				p.setDtAdc(rs.getDate("dtAdc"));
-				p.setFabricante(fdao.searchById(rs.getInt("fabricante")));
-				p.setFornecedor(fodao.searchById(rs.getInt("fornecedor")));
-				p.setCarro(cdao.searchById(rs.getInt("carro")));
 				
 				list.add(p);
 			}

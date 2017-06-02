@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import model.Cliente;
 import model.ItemVenda;
 import model.Venda;
 import persistence.GenericDAO;
@@ -33,7 +32,6 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 			for(ItemVenda iv: classe.getItens()){				
 				stmt.setString(1, sdf.format(classe.getDataVenda()));
 				stmt.setDouble(2, classe.getValorTotal());
-				stmt.setInt(3,classe.getCliente().getCpf());	
 				stmt.setInt(4, iv.getId());
 				
 				if(stmt.executeUpdate() > 0){
@@ -57,7 +55,6 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 			PreparedStatement stmt = con.prepareStatement(sql);
 			for(ItemVenda iv: classe.getItens()){				
 				stmt.setDouble(1, classe.getValorTotal());
-				stmt.setInt(2,classe.getCliente().getCpf());	
 				stmt.setInt(3, iv.getId());
 				stmt.setInt(4, classe.getId());
 				
@@ -111,14 +108,10 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 			while(rs.next()){
 				ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
 				ItemVenda iv =  ivdao.searchById(rs.getInt("itens"));
-				ClienteDAOImpl cdao = new ClienteDAOImpl();
-				Cliente c = cdao.searchById(rs.getInt("cliente"));
 				listaItens.add(iv);
 				Venda v = new Venda();
-				v.setCliente(c);
 				v.setDataVenda(rs.getDate("dataVenda"));
 				v.setId(rs.getInt("id"));
-				v.setValorTotal(rs.getDouble("valorTotal"));
 				v.setItens(listaItens);
 				
 				list.add(v);
@@ -149,14 +142,10 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 			while(rs.next()){
 				ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
 				ItemVenda iv =  ivdao.searchById(rs.getInt("itens"));
-				ClienteDAOImpl cdao = new ClienteDAOImpl();
-				Cliente c = cdao.searchById(rs.getInt("cliente"));
 				listaItens.add(iv);
 				Venda v = new Venda();
-				v.setCliente(c);
 				v.setDataVenda(rs.getDate("dataVenda"));
 				v.setId(rs.getInt("id"));
-				v.setValorTotal(rs.getDouble("valorTotal"));
 				v.setItens(listaItens);
 				
 				list.add(v);
