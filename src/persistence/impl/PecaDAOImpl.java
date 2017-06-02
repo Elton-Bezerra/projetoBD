@@ -23,7 +23,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 	@Override
 	public void insert(Peca classe) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into Peca (tipo, nome, aplicacao, valor, dtAdc, fabricante, carro) values (?,?,?,?,?,?,?)";
+		String sql = "Insert into Peca (tipo, nome, aplicacao, valor, dtAdc, fabricante, carro, quantidade) values (?,?,?,?,?,?,?,?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -34,6 +34,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			stmt.setString(5, sdf.format(classe.getDtAdc()));
 			stmt.setInt(6, classe.getFabricante());
 			stmt.setInt(7, classe.getCarro());
+			stmt.setInt(8, classe.getQuantidade());
 			
 			
 			if(stmt.executeUpdate() > 0 ){
@@ -50,7 +51,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 		// TODO Auto-generated method stub
 		String sql = "update Peca set "
 				+ "tipo = ?, nome = ?, aplicacao = ?, valor = ?, set dtAdc = ?, fabricante = ? "
-				+ "forenecedor = ?, carro = ? where id = ?";
+				+ "forenecedor = ?, carro = ?, quantidade = ? where id = ?";
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, classe.getTipo());
@@ -58,6 +59,9 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			stmt.setString(3, classe.getAplicacao());
 			stmt.setDouble(4, classe.getValor());
 			stmt.setString(5, sdf.format(classe.getDtAdc()));
+			stmt.setInt(6, classe.getFabricante());
+			stmt.setInt(7, classe.getCarro());			
+			stmt.setInt(8, classe.getQuantidade());
 			stmt.setInt(9,  classe.getId());
 			
 			if(stmt.executeUpdate() > 0){

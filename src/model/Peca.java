@@ -12,6 +12,7 @@ public class Peca {
 	private Date dtAdc;
 	private int carro;
 	private int fabricante;
+	private int quantidade;
 	
 	public int getId() {
 		return id;
@@ -60,6 +61,12 @@ public class Peca {
 	}
 	public void setFabricante(int fabricante) {
 		this.fabricante = fabricante;
+	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 	
 	
