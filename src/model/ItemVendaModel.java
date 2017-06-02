@@ -9,11 +9,11 @@ import javax.swing.table.TableModel;
 
 import persistence.GenericDAO;
 
-public class VendaModel implements TableModel {
+public class ItemVendaModel implements TableModel {
 
 	private List<ItemVenda> lista = new ArrayList();
 	Connection con;
-	public VendaModel() {
+	public ItemVendaModel() {
 		// TODO Auto-generated constructor stub
 		GenericDAO gd = GenericDAO.getInstance();
 		con = gd.getConnection();

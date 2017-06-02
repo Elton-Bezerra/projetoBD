@@ -10,16 +10,17 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
-import model.VendaModel;
+import model.ItemVendaModel;
 
 import javax.swing.JComboBox;
 
 public class TelaVenda extends JInternalFrame {
 	private JTextField textField_1;
-	private JTable table;
+	private JTable tableItemVenda;
 	private JTextField tfValorTotal;
-	private VendaModel model = new VendaModel();
+	private ItemVendaModel model = new ItemVendaModel();
 	private JTextField tfNVenda;
+	private JTable tableVenda;
 
 	/**
 	 * Launch the application.fghfghf
@@ -43,7 +44,7 @@ public class TelaVenda extends JInternalFrame {
 	public TelaVenda() {
 		setClosable(true);
 		setTitle("Tela de Venda");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 396);
 		getContentPane().setLayout(null);
 		
 		JLabel lblPeça = new JLabel("Pe\u00E7a:");
@@ -60,13 +61,13 @@ public class TelaVenda extends JInternalFrame {
 		textField_1.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 175, 416, 67);
+		scrollPane.setBounds(10, 288, 416, 67);
 		getContentPane().add(scrollPane);
 		
-		table = new JTable();
-		table.setModel(model);
-		table.getColumnModel().getColumn(1).setPreferredWidth(110);
-		scrollPane.setViewportView(table);
+		tableItemVenda = new JTable();
+		tableItemVenda.setModel(model);
+		tableItemVenda.getColumnModel().getColumn(1).setPreferredWidth(110);
+		scrollPane.setViewportView(tableItemVenda);
 		
 		JButton btnAdicionarItem = new JButton("+");
 		btnAdicionarItem.setBounds(218, 24, 41, 20);
@@ -102,6 +103,13 @@ public class TelaVenda extends JInternalFrame {
 		JLabel lblNVenda = new JLabel("N\u00BA venda");
 		lblNVenda.setBounds(250, 118, 46, 14);
 		getContentPane().add(lblNVenda);
+		
+		JScrollPane spVenda = new JScrollPane();
+		spVenda.setBounds(12, 203, 412, 74);
+		getContentPane().add(spVenda);
+		
+		tableVenda = new JTable();
+		spVenda.setViewportView(tableVenda);
 
 	}
 }

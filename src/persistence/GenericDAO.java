@@ -12,7 +12,7 @@ public class GenericDAO implements IGenericDAO {
 		try { 
 			Class.forName("net.sourceforge.jtds.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:jtds:sqlserver://127.0.0.1:1433;"
-					+ "DatabaseName=projetoBD;namedPipe=true","elton","1234");
+					+ "DatabaseName=projetoBD;namedPipe=true","elton","Elton@1997");
 			System.out.println("Conexao ok");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
