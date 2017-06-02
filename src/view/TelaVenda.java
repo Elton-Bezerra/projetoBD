@@ -67,17 +67,17 @@ public class TelaVenda extends JInternalFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(110);
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(12, 137, 117, 25);
-		getContentPane().add(btnNewButton_2);
+		JButton btnAdicionarItem = new JButton("+");
+		btnAdicionarItem.setBounds(218, 24, 41, 20);
+		getContentPane().add(btnAdicionarItem);
 		
-		JButton btnNewButton_3 = new JButton("New button");
-		btnNewButton_3.setBounds(141, 137, 117, 25);
+		JButton btnNewButton_3 = new JButton("Cadastrar Venda");
+		btnNewButton_3.setBounds(12, 139, 117, 25);
 		getContentPane().add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("New button");
-		btnNewButton_4.setBounds(281, 137, 117, 25);
-		getContentPane().add(btnNewButton_4);
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.setBounds(307, 139, 117, 25);
+		getContentPane().add(btnPesquisar);
 		
 		JComboBox cbPeca = new JComboBox();
 		cbPeca.setBounds(94, 24, 114, 20);
