@@ -10,6 +10,7 @@ import javax.swing.JToolBar;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.ImageIcon;
 
 public class TelaMenu extends JFrame {
 
@@ -41,29 +42,17 @@ public class TelaMenu extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("menu");
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmCadastrarPea = new JMenuItem("Cadastrar Pe\u00E7a");
-		mnNewMenu.add(mntmCadastrarPea);
-		
-		JMenuItem mntmCadastrarFabricante = new JMenuItem("Cadastrar Fabricante ");
-		mnNewMenu.add(mntmCadastrarFabricante);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Cadastrar Montadora");
-		mnNewMenu.add(mntmNewMenuItem);
-		
-		JMenuItem mntmCadastrarCarro = new JMenuItem("Cadastrar Carro");
-		mnNewMenu.add(mntmCadastrarCarro);
-		
-		JMenuItem mntmCadastrarFornecedor = new JMenuItem("Cadastrar Fornecedor");
-		mnNewMenu.add(mntmCadastrarFornecedor);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Cadastrar Cliente ");
-		mnNewMenu.add(mntmNewMenuItem_1);
+		JMenuItem mntmPecas = new JMenuItem("Pe\u00E7as");
+		mntmPecas.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\Desktop\\Projeto BD Colevati\\workspace\\Projeto\\imgs\\gear_icon-icons.com_70125.png"));
+		menuBar.add(mntmPecas);
 		
 		JMenuItem mntmVendas = new JMenuItem("Vendas");
-		mnNewMenu.add(mntmVendas);
+		mntmVendas.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\Desktop\\Projeto BD Colevati\\workspace\\Projeto\\imgs\\currency.png"));
+		menuBar.add(mntmVendas);
+		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\Desktop\\Projeto BD Colevati\\workspace\\Projeto\\imgs\\exit_icon-icons.com_70975.png"));
+		menuBar.add(mntmSair);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
