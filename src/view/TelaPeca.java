@@ -39,6 +39,7 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 	private JComboBox cbFabricante;
 	private JTextField tfData;
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	private JTextField tfQuantidade;
 	
 	/**
 	 * Launch the application.ghjfhgjgsysout
@@ -160,6 +161,15 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		tfData.setBounds(296, 106, 86, 20);
 		getContentPane().add(tfData);
 		tfData.setColumns(10);
+		
+		JLabel lblQuantidade = new JLabel("Quantidade");
+		lblQuantidade.setBounds(240, 161, 56, 14);
+		getContentPane().add(lblQuantidade);
+		
+		tfQuantidade = new JTextField();
+		tfQuantidade.setBounds(307, 158, 86, 20);
+		getContentPane().add(tfQuantidade);
+		tfQuantidade.setColumns(10);
 	}
 	
 	@Override
@@ -174,10 +184,10 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
 		if ("Cadastrar".equals(cmd)) { 
-			Peca p = formToPeca();
+			Peca p = formToPecaCadastrar();
 			model.adicionar( p );
 			table.invalidate();
-			table.revalidate();
+			table.validate();
 			table.repaint();
 		} else if ("Pesquisar".equals(cmd)){				
 			model.pesquisarPorNome(tfNome.getText());	
@@ -208,7 +218,25 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		p.setValor(Double.parseDouble(this.tfValor.getText()));
 		p.setFabricante(this.cbFabricante.getSelectedIndex());
 		p.setCarro(this.cbCarro.getSelectedIndex());
+		p.setQuantidade(Integer.parseInt(this.tfQuantidade.getText()));
+		return p;
+	}
+	
+	public Peca formToPecaCadastrar(){
+		Peca p = new Peca();
+		p.setTipo(this.tfTipo.getText());
+		p.setNome(this.tfNome.getText());
+		p.setAplicacao(this.tfAplicacao.getText());
+		try{
+			p.setDtAdc(sdf.parse(this.tfData.getText()));
+		}catch (ParseException e){
+			e.printStackTrace();
+		}
 		
+		p.setValor(Double.parseDouble(this.tfValor.getText()));
+		p.setFabricante(this.cbFabricante.getSelectedIndex());
+		p.setCarro(this.cbCarro.getSelectedIndex());
+		p.setQuantidade(Integer.parseInt(this.tfQuantidade.getText()));
 		return p;
 	}
 	
@@ -221,7 +249,7 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 			tfValor.setText(Double.toString(p.getValor()));
 			cbCarro.setSelectedIndex(p.getCarro());
 			cbFabricante.setSelectedIndex(p.getFabricante());			
-			
+			tfQuantidade.setText(Integer.toString(p.getQuantidade()));
 		}
 	}
 }

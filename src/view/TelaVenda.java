@@ -10,10 +10,15 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import model.VendaModel;
+
+import javax.swing.JComboBox;
+
 public class TelaVenda extends JInternalFrame {
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTable table;
+	private JTextField tfValorTotal;
+	private VendaModel model = new VendaModel();
 
 	/**
 	 * Launch the application.fghfghf
@@ -39,48 +44,26 @@ public class TelaVenda extends JInternalFrame {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		
-		JLabel lblCliente = new JLabel("Cliente:");
-		lblCliente.setBounds(12, 24, 70, 15);
-		getContentPane().add(lblCliente);
+		JLabel lblPeça = new JLabel("Pe\u00E7a:");
+		lblPeça.setBounds(12, 24, 45, 15);
+		getContentPane().add(lblPeça);
 		
-		textField = new JTextField();
-		textField.setBounds(74, 22, 114, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(200, 19, 60, 25);
-		getContentPane().add(btnNewButton);
-		
-		JLabel lblItemvenda = new JLabel("ItemVenda:");
-		lblItemvenda.setBounds(12, 70, 86, 15);
-		getContentPane().add(lblItemvenda);
+		JLabel lblQuantidade = new JLabel("Quantidade:");
+		lblQuantidade.setBounds(12, 70, 86, 15);
+		getContentPane().add(lblQuantidade);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(107, 68, 114, 19);
+		textField_1.setBounds(94, 67, 114, 19);
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(240, 65, 60, 25);
-		getContentPane().add(btnNewButton_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 175, 416, 67);
 		getContentPane().add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"Item do Pedido", "Cliente"
-			}
-		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(110);
+		table.setModel(model);
+		table.getColumnModel().getColumn(1).setPreferredWidth(110);
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton_2 = new JButton("New button");
@@ -94,7 +77,20 @@ public class TelaVenda extends JInternalFrame {
 		JButton btnNewButton_4 = new JButton("New button");
 		btnNewButton_4.setBounds(281, 137, 117, 25);
 		getContentPane().add(btnNewButton_4);
+		
+		JComboBox cbPeca = new JComboBox();
+		cbPeca.setBounds(94, 24, 114, 20);
+		getContentPane().add(cbPeca);
+		
+		JLabel lblValorTotal = new JLabel("Valor total:");
+		lblValorTotal.setBounds(11, 96, 53, 14);
+		getContentPane().add(lblValorTotal);
+		
+		tfValorTotal = new JTextField();
+		tfValorTotal.setEnabled(false);
+		tfValorTotal.setBounds(94, 96, 114, 20);
+		getContentPane().add(tfValorTotal);
+		tfValorTotal.setColumns(10);
 
 	}
-
 }

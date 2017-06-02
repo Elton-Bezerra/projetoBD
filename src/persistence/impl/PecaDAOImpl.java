@@ -51,7 +51,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 		// TODO Auto-generated method stub
 		String sql = "update Peca set "
 				+ "tipo = ?, nome = ?, aplicacao = ?, valor = ?, set dtAdc = ?, fabricante = ? "
-				+ "forenecedor = ?, carro = ?, quantidade = ? where id = ?";
+				+ "carro = ?, quantidade = ? where id = ?";
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, classe.getTipo());
@@ -111,6 +111,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 				p.setAplicacao(rs.getString("aplicacao"));
 				p.setValor(rs.getDouble("valor"));
 				p.setDtAdc(rs.getDate("dtAdc"));
+				p.setQuantidade(rs.getInt("quantidade"));
 				
 				return p;
 			}
@@ -142,6 +143,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 				p.setDtAdc(rs.getDate("dtAdc"));
 				p.setCarro(rs.getInt("carro"));
 				p.setFabricante(rs.getInt("fabricante"));
+				p.setQuantidade(rs.getInt("quantidade"));
 				list.add(p);
 			}
 			return list;
@@ -172,6 +174,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 				p.setDtAdc(rs.getDate("dtAdc"));
 				p.setCarro(rs.getInt("carro"));
 				p.setFabricante(rs.getInt("fabricante"));
+				p.setQuantidade(rs.getInt("quantidade"));
 				list.add(p);
 			}
 			return list;

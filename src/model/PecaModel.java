@@ -34,7 +34,7 @@ public class PecaModel implements TableModel {
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 7;
+		return 8;
 	}
 
 	@Override
@@ -48,6 +48,7 @@ public class PecaModel implements TableModel {
 			case 4 : return "Valor";
 			case 5 : return "Carro";
 			case 6 : return "Fabricante";
+			case 7 : return "Quantidade";
 		}
 		return "";
 	}
@@ -63,6 +64,7 @@ public class PecaModel implements TableModel {
 		case 4 : return Float.class;
 		case 5 : return Integer.class;
 		case 6 : return Integer.class;
+		case 7 : return Integer.class;
 		}
 		return null;
 	}
@@ -85,6 +87,7 @@ public class PecaModel implements TableModel {
 		case 4 : return p.getValor();
 		case 5 : return p.getCarro();
 		case 6 : return p.getFabricante();
+		case 7 : return p.getQuantidade();
 		}		
 		
 		return "";
