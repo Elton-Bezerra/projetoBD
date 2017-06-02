@@ -52,7 +52,6 @@ public class TelaMenu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				TelaPeca t = new TelaPeca();
-				t.setVisible(true);
 				desktopPane.add(t);
 				t.setVisible(true);
 			}
@@ -61,6 +60,15 @@ public class TelaMenu extends JFrame {
 		menuBar.add(mntmPecas);
 		
 		JMenuItem mntmVendas = new JMenuItem("Vendas");
+		mntmVendas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				TelaVenda tv = new TelaVenda();
+				desktopPane.add(tv);
+				tv.setVisible(true);
+				
+			}
+		});
 		mntmVendas.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\Desktop\\Projeto BD Colevati\\workspace\\Projeto\\imgs\\currency.png"));
 		menuBar.add(mntmVendas);
 		

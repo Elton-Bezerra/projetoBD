@@ -40,6 +40,7 @@ public class TelaVenda extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public TelaVenda() {
+		setClosable(true);
 		setTitle("Tela de Venda");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
