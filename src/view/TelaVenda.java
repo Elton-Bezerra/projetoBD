@@ -19,6 +19,7 @@ public class TelaVenda extends JInternalFrame {
 	private JTable table;
 	private JTextField tfValorTotal;
 	private VendaModel model = new VendaModel();
+	private JTextField tfNVenda;
 
 	/**
 	 * Launch the application.fghfghf
@@ -76,7 +77,7 @@ public class TelaVenda extends JInternalFrame {
 		getContentPane().add(btnNewButton_3);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setBounds(307, 139, 117, 25);
+		btnPesquisar.setBounds(290, 139, 117, 25);
 		getContentPane().add(btnPesquisar);
 		
 		JComboBox cbPeca = new JComboBox();
@@ -92,6 +93,15 @@ public class TelaVenda extends JInternalFrame {
 		tfValorTotal.setBounds(94, 96, 114, 20);
 		getContentPane().add(tfValorTotal);
 		tfValorTotal.setColumns(10);
+		
+		tfNVenda = new JTextField();
+		tfNVenda.setBounds(307, 115, 86, 20);
+		getContentPane().add(tfNVenda);
+		tfNVenda.setColumns(10);
+		
+		JLabel lblNVenda = new JLabel("N\u00BA venda");
+		lblNVenda.setBounds(250, 118, 46, 14);
+		getContentPane().add(lblNVenda);
 
 	}
 }
