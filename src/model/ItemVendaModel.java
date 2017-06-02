@@ -8,16 +8,19 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 import persistence.GenericDAO;
+import persistence.impl.ItemVendaDAOImpl;
+import persistence.impl.PecaDAOImpl;
 
 public class ItemVendaModel implements TableModel {
 
-	private List<ItemVenda> lista = new ArrayList();
+	private List<ItemVenda> lista = new ArrayList<ItemVenda>();
 	Connection con;
 	public ItemVendaModel() {
 		// TODO Auto-generated constructor stub
 		GenericDAO gd = GenericDAO.getInstance();
 		con = gd.getConnection();
-		
+		ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
+		lista = ivdao.listarTodos();
 		
 	}
 	@Override

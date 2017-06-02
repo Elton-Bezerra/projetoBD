@@ -74,7 +74,7 @@ public class TelaMenu extends JFrame {
 				t.setVisible(true);
 			}
 		});
-		mntmPecas.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\Desktop\\Projeto BD Colevati\\workspace\\Projeto\\imgs\\gear_icon-icons.com_70125.png"));
+		mntmPecas.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\git\\projetoBD\\imgs\\gear_icon-icons.com_70125.png"));
 		menuBar.add(mntmPecas);
 		
 		JMenuItem mntmVendas = new JMenuItem("Vendas");
@@ -87,7 +87,7 @@ public class TelaMenu extends JFrame {
 				
 			}
 		});
-		mntmVendas.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\Desktop\\Projeto BD Colevati\\workspace\\Projeto\\imgs\\currency.png"));
+		mntmVendas.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\git\\projetoBD\\imgs\\currency.png"));
 		menuBar.add(mntmVendas);
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
@@ -97,7 +97,7 @@ public class TelaMenu extends JFrame {
 				System.exit(0);
 			}
 		});
-		mntmSair.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\Desktop\\Projeto BD Colevati\\workspace\\Projeto\\imgs\\exit_icon-icons.com_70975.png"));
+		mntmSair.setIcon(new ImageIcon("C:\\Users\\Elton Bezerra\\git\\projetoBD\\imgs\\exit_icon-icons.com_70975.png"));
 		menuBar.add(mntmSair);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
