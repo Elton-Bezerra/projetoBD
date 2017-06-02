@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JDesktopPane;
+import java.awt.Color;
 
 public class TelaMenu extends JFrame {
 
@@ -105,6 +106,7 @@ public class TelaMenu extends JFrame {
 		contentPane.setLayout(bd);
 		
 		desktopPane= new JDesktopPane();
+		desktopPane.setBackground(Color.WHITE);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 	}
 

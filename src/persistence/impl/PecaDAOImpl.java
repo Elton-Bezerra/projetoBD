@@ -13,12 +13,12 @@ import persistence.GenericDAO;
 
 public class PecaDAOImpl implements IDAOImpl<Peca>{
 
-	GenericDAO gd = new GenericDAO();
 	Connection con;
 	private List<Peca> list = new ArrayList<Peca>();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	public PecaDAOImpl() {
-		con = gd.getConnection();		
+		GenericDAO gd = GenericDAO.getInstance();
+		con = gd.getConnection();
 	}
 	@Override
 	public void insert(Peca classe) {

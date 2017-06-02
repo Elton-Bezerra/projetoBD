@@ -12,13 +12,14 @@ import persistence.GenericDAO;
 import persistence.impl.PecaDAOImpl;
 
 public class PecaModel implements TableModel {
-	GenericDAO gd = new GenericDAO();
+	
 	Connection con;
 	List<Peca> lista = new ArrayList<Peca>();
 	
 	
 	public PecaModel() {
 		// TODO Auto-generated constructor stub
+		GenericDAO gd = GenericDAO.getInstance();
 		con = gd.getConnection();
 		PecaDAOImpl pdao = new PecaDAOImpl();
 		lista = pdao.listarTodos();

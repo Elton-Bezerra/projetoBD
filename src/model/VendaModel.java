@@ -12,10 +12,10 @@ import persistence.GenericDAO;
 public class VendaModel implements TableModel {
 
 	private List lista = new ArrayList();
-	GenericDAO gd = new GenericDAO();
 	Connection con;
 	public VendaModel() {
 		// TODO Auto-generated constructor stub
+		GenericDAO gd = GenericDAO.getInstance();
 		con = gd.getConnection();
 	}
 	@Override
