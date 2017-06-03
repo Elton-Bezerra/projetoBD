@@ -10,6 +10,7 @@ import javax.swing.table.TableModel;
 import persistence.GenericDAO;
 import persistence.impl.ItemVendaDAOImpl;
 import persistence.impl.PecaDAOImpl;
+import persistence.impl.VendaDAOImpl;
 
 public class ItemVendaModel implements TableModel {
 
@@ -94,6 +95,16 @@ public class ItemVendaModel implements TableModel {
 		
 	}
 	
+	public void adicionarItens(List<ItemVenda> l){
+		ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
+		VendaDAOImpl vdao = new VendaDAOImpl();
+		Venda v = new Venda();
+		v = vdao.listarTodos().get(vdao.listarTodos().size()-1);
+		for(ItemVenda iv: l){
+			iv.setVenda(v);
+		}
+		ivdao.inserirItens(l);
+	}
 	public void addRow(ItemVenda iv){
 		this.addRow(iv);
 	}

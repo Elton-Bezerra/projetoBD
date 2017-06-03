@@ -9,6 +9,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 import persistence.GenericDAO;
+import persistence.impl.ItemVendaDAOImpl;
 import persistence.impl.VendaDAOImpl;
 
 public class VendaModel implements TableModel {
@@ -90,10 +91,15 @@ public class VendaModel implements TableModel {
 		
 	}
 	
-	public void adicionar(Venda v){
-		VendaDAOImpl vdao = new VendaDAOImpl();
+	public void adicionarVenda(Venda v){
+		VendaDAOImpl vdao = new VendaDAOImpl();		
 		vdao.insert(v);
-		
+	}
+	
+	public Venda getLast(){
+		VendaDAOImpl vdao = new VendaDAOImpl();
+		Venda v = vdao.listarTodos().get(vdao.listarTodos().size() -1);
+		return v;
 	}
 
 }

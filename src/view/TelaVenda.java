@@ -24,6 +24,8 @@ import persistence.impl.ItemVendaDAOImpl;
 import persistence.impl.PecaDAOImpl;
 
 import javax.swing.JComboBox;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaVenda extends JInternalFrame implements ActionListener {
 	private JTextField tfQtd;
@@ -35,6 +37,7 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 	private JComboBox cbPeca;
 	private List<ItemVenda> itens = new ArrayList<ItemVenda>();
 	private VendaModel vendaModel = new VendaModel();
+	private ItemVendaModel ivModel = new ItemVendaModel();
 
 	/**
 	 * Launch the application.fghfghf
@@ -70,6 +73,22 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 		getContentPane().add(lblQuantidade);
 		
 		tfQtd = new JTextField();
+		tfQtd.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				PecaDAOImpl pdao = new PecaDAOImpl();
+				List<Peca> lst = pdao.listarTodos();
+				Peca p = lst.get(cbPeca.getSelectedIndex());
+				ItemVenda iv = new ItemVenda();
+				iv.setPeca(p);			
+				iv.setQtd(Integer.parseInt(tfQtd.getText()));
+				if(!tfQtd.getText().isEmpty()){
+					if(Integer.parseInt(tfQtd.getText()) > 0){
+						tfValorTotal.setText(Double.toString(iv.getQtd() * p.getValor()));
+					}
+				}
+			}
+		});
 		tfQtd.setBounds(94, 67, 114, 19);
 		getContentPane().add(tfQtd);
 		tfQtd.setColumns(10);
@@ -102,13 +121,6 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 		for(Peca p : pdao.selectIDNome()){
 			cbPeca.addItem(p.getNome());
 		}
-		cbPeca.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 		cbPeca.setBounds(94, 24, 114, 20);
 		getContentPane().add(cbPeca);
 		JLabel lblValorTotal = new JLabel("Valor total:");
@@ -145,8 +157,14 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
 		if("Cadastrar Venda".equals(cmd)){
-			Venda v = new Venda();			
-			vendaModel.adicionar(v);
+			Venda v = new Venda();	
+			double vlTotal = 0;
+			for(ItemVenda iv : itens){
+				vlTotal += iv.getSubTotal();
+			}
+			v.setValorTotal(vlTotal);
+			vendaModel.adicionarVenda(v);
+			ivModel.adicionarItens(itens);
 			atualizarTableItem();
 			itens.clear();
 		} else if ("+".equals(cmd)){
@@ -154,7 +172,7 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 			List<Peca> lst = pdao.listarTodos();
 			Peca p = lst.get(cbPeca.getSelectedIndex());
 			ItemVenda iv = new ItemVenda();
-			iv.setPeca(p);
+			iv.setPeca(p);			
 			iv.setQtd(Integer.parseInt(tfQtd.getText()));
 			iv.setSubTotal(iv.getQtd() * p.getValor());
 			itens.add(iv);

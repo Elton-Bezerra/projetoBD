@@ -3,6 +3,7 @@ package model;
 public class ItemVenda {
 	private int id;
 	private Peca peca;
+	private Venda venda;
 	private int qtd;
 	private double subTotal;
 	
@@ -29,6 +30,12 @@ public class ItemVenda {
 	}
 	public void setSubTotal(double subTotal) {
 		this.subTotal = this.getPeca().getValor() * qtd;
+	}
+	public Venda getVenda() {
+		return venda;
+	}
+	public void setVenda(Venda venda) {
+		this.venda = venda;
 	}
 	
 	
