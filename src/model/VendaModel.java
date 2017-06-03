@@ -89,5 +89,11 @@ public class VendaModel implements TableModel {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void adicionar(Venda v){
+		VendaDAOImpl vdao = new VendaDAOImpl();
+		vdao.insert(v);
+		
+	}
 
 }

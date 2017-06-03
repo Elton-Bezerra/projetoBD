@@ -97,7 +97,6 @@ public class PecaModel implements TableModel {
 	public void adicionar(Peca p){
 		PecaDAOImpl pdao = new PecaDAOImpl();
 		pdao.insert(p);				
-		System.out.println("Consulta gravada com sucesso");	
 	}
 	
 	public void pesquisarPorNome(String nome){

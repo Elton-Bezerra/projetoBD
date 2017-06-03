@@ -14,14 +14,22 @@ import persistence.impl.PecaDAOImpl;
 public class ItemVendaModel implements TableModel {
 
 	private List<ItemVenda> lista = new ArrayList<ItemVenda>();
+	private List<ItemVenda> lst;
 	Connection con;
 	public ItemVendaModel() {
 		// TODO Auto-generated constructor stub
 		GenericDAO gd = GenericDAO.getInstance();
 		con = gd.getConnection();
 		ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
-		lista = ivdao.listarTodos();
-		
+		lista = ivdao.listarTodos();		
+	}
+	
+	public ItemVendaModel(ArrayList<ItemVenda> lst) {
+		// TODO Auto-generated constructor stub
+		GenericDAO gd = GenericDAO.getInstance();
+		con = gd.getConnection();
+		ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
+		this.lst = ivdao.listarTodos();		
 	}
 	@Override
 	public void addTableModelListener(TableModelListener l) {
@@ -86,6 +94,9 @@ public class ItemVendaModel implements TableModel {
 		
 	}
 	
+	public void addRow(ItemVenda iv){
+		this.addRow(iv);
+	}
 	
 
 }
