@@ -51,7 +51,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 	public void update(Peca classe) {
 		// TODO Auto-generated method stub
 		String sql = "update Peca set "
-				+ "tipo = ?, nome = ?, aplicacao = ?, valor = ?, set dtAdc = ?, fabricante = ? "
+				+ "tipo = ?, nome = ?, aplicacao = ?, valor = ?, dtAdc = ?, fabricante = ?, "
 				+ "carro = ?, quantidade = ? where id = ?";
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -65,6 +65,7 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 			stmt.setInt(8, classe.getQuantidade());
 			stmt.setInt(9,  classe.getId());
 			
+			System.out.println("tá aqui 2");
 			if(stmt.executeUpdate() > 0){
 				System.out.println("Peça atualizada.");
 			}

@@ -113,9 +113,7 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		scrollPane.setBounds(12, 243, 566, 121);
 		getContentPane().add(scrollPane);
 		
-		table = new JTable(model);
-		
-		
+		table = new JTable(model);	
 		table.getSelectionModel().addListSelectionListener(this);
 		table.getColumnModel().getColumn(5).setPreferredWidth(79);
 		scrollPane.setViewportView(table);
@@ -191,29 +189,25 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		if ("Cadastrar".equals(cmd)) { 
 			Peca p = formToPecaCadastrar();
 			model.adicionar( p );
-			table.invalidate();
-			table.validate();
-			table.repaint();
+			atualizaTable();
 		} else if ("Pesquisar".equals(cmd)){				
 			model.pesquisarPorNome(tfNome.getText());	
-			table.invalidate();
-			table.revalidate();
-			table.repaint();
+			atualizaTable();
 		} else if ("Excluir".equals(cmd)){
 			Peca p = formToPeca();
 			model.deletar(p);
-			table.invalidate();
-			table.revalidate();
-			table.repaint();
+			atualizaTable();
 		} else if("Editar".equals(cmd)){
-			Peca p = formToPecaCadastrar();
-			
+			Peca p = formToPeca();
+			model.editar(p);
+			atualizaTable();
 		}
 	}
 	
 	public Peca formToPeca(){
 		Peca p = new Peca();
 		p.setId(model.getPecaByRow(table.getSelectedRow()).getId());
+		System.out.println(model.getPecaByRow(table.getSelectedRow()).getId());
 		p.setTipo(this.tfTipo.getText());
 		p.setNome(this.tfNome.getText());
 		p.setAplicacao(this.tfAplicacao.getText());
@@ -248,6 +242,11 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		return p;
 	}
 	
+	public void atualizaTable(){
+		table.invalidate();
+		table.validate();
+		table.repaint();
+	}
 	public void pecaToForm(Peca p){
 		if(p != null){
 			tfNome.setText(p.getNome());
