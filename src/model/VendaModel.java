@@ -64,7 +64,7 @@ public class VendaModel implements TableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		Venda v = lista.get(0);
+		Venda v = lista.get(rowIndex);
 		switch(columnIndex){
 		case 0 : return v.getId();
 		case 1 : return v.getDataVenda();

@@ -120,7 +120,6 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 		}
 		return null;
 	}
-	@SuppressWarnings("null")
 	@Override
 	public List<Venda> listarTodos() {
 		String sql = "select * from Venda";
@@ -129,16 +128,13 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 			
 			ResultSet rs =	stmt.executeQuery();
 			
-			list.clear();
-			
-			List<ItemVenda> listaItens = null;
-			
+			list.clear();			
 			while(rs.next()){
 				Venda v = new Venda();
-				v.setDataVenda(rs.getDate("dataVenda"));
 				v.setId(rs.getInt("id"));
+				v.setDataVenda(rs.getDate("dataVenda"));				
 				v.setValorTotal(rs.getDouble("valorTotal"));
-				
+				System.out.println(rs.getDouble("valorTotal"));
 				list.add(v);
 			}
 			
