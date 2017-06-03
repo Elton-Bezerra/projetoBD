@@ -244,8 +244,9 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 	
 	public void atualizaTable(){
 		table.invalidate();
-		table.validate();
+		table.revalidate();
 		table.repaint();
+		
 	}
 	public void pecaToForm(Peca p){
 		if(p != null){
