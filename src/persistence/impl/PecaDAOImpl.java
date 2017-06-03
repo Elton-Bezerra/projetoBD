@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ItemVenda;
 import model.Peca;
 import persistence.GenericDAO;
 
@@ -185,4 +186,25 @@ public class PecaDAOImpl implements IDAOImpl<Peca>{
 		return null;
 	}
 
+	public List<Peca> selectIDNome(){	
+	
+		List<Peca> lt = new ArrayList<Peca>();
+		
+		String sql = "select p.id, p.nome from Peca p";
+		
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				Peca p = new Peca();
+				p.setId(rs.getInt("id"));
+				p.setNome(rs.getString("nome"));
+				lt.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lt;
+	}
 }

@@ -170,6 +170,11 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 		tfQuantidade.setBounds(307, 158, 86, 20);
 		getContentPane().add(tfQuantidade);
 		tfQuantidade.setColumns(10);
+		
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(this);
+		btnEditar.setBounds(489, 68, 89, 23);
+		getContentPane().add(btnEditar);
 	}
 	
 	@Override
@@ -200,6 +205,9 @@ public class TelaPeca extends JInternalFrame implements ActionListener, ListSele
 			table.invalidate();
 			table.revalidate();
 			table.repaint();
+		} else if("Editar".equals(cmd)){
+			Peca p = formToPecaCadastrar();
+			
 		}
 	}
 	

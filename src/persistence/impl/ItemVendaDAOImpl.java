@@ -116,7 +116,12 @@ public class ItemVendaDAOImpl implements IDAOImpl<ItemVenda>{
 
 	@Override
 	public List<ItemVenda> listarTodos() {
-		String sql = "select * from ItemVenda";
+		String sql = "select p.nome as nome, iv.qtd as quantidade, iv.subtotal as subTotal"
+				+ " from ItemVenda iv"
+				+ " INNER JOIN Peca p"
+				+ " ON iv.peca = p.id" 
+				+ " INNER JOIN Venda v"
+				+ " ON iv.venda = v.id";
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -142,5 +147,6 @@ public class ItemVendaDAOImpl implements IDAOImpl<ItemVenda>{
 		}	
 		return null;
 	}
+	
 
 }

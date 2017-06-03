@@ -17,6 +17,7 @@ import model.ItemVendaModel;
 import model.Peca;
 import model.Venda;
 import model.VendaModel;
+import persistence.impl.PecaDAOImpl;
 
 import javax.swing.JComboBox;
 
@@ -90,6 +91,13 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 		getContentPane().add(btnPesquisar);
 		
 		JComboBox cbPeca = new JComboBox();
+		PecaDAOImpl pdao = new PecaDAOImpl();
+		for(Peca p : pdao.selectIDNome()){
+			cbPeca.addItem(p.getNome());
+			cbPeca.setSelectedItem(p.getId());			
+			
+		}
+		
 		cbPeca.setBounds(94, 24, 114, 20);
 		getContentPane().add(cbPeca);
 		
