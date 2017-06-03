@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import model.ItemVenda;
 import model.Peca;
 import persistence.GenericDAO;
@@ -20,6 +21,12 @@ public class ItemVendaDAOImpl implements IDAOImpl<ItemVenda>{
 	public ItemVendaDAOImpl() {
 		GenericDAO gd = GenericDAO.getInstance();
 		con = gd.getConnection();
+	}
+	
+	public void inserirItens(List<ItemVenda> l){
+		for(ItemVenda iv : l){
+			insert(iv);
+		}
 	}
 	
 	@Override

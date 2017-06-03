@@ -45,7 +45,7 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 	@Override
 	public void update(Venda classe) {
 		// TODO Auto-generated method stub
-		String sql = "update Venda set 	valorTotal = ?, set cliente = ?, set itens = ?"
+		String sql = "update Venda set 	valorTotal = ?"
 				+ "where id = ?	";
 		
 		try {
