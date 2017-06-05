@@ -1,5 +1,7 @@
 package model;
 
 public enum Fabricante {
-	Q,W,E,R,T,Y
+	ACDelco, ATE, Axios, Bosch, Brosol, Certa, Cabovel, Continental,
+	Dayco, Fremax, GM, GrandPrix, IKS, Jahu, Costal, Loctite, NGK, 
+	Ospina, Shell, Texaco, Varga, WD40Company, Western
 }
