@@ -10,6 +10,8 @@ import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -27,7 +29,7 @@ import javax.swing.JComboBox;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class TelaVenda extends JInternalFrame implements ActionListener {
+public class TelaVenda extends JInternalFrame implements ActionListener, ListSelectionListener {
 	private JTextField tfQtd;
 	private JTable tableItemVenda;
 	private JTextField tfValorTotal;
@@ -99,6 +101,7 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 		
 		tableItemVenda = new JTable();
 		tableItemVenda.setModel(model);
+		tableItemVenda.getSelectionModel().addListSelectionListener( this );
 		tableItemVenda.getColumnModel().getColumn(1).setPreferredWidth(110);
 		scrollPane.setViewportView(tableItemVenda);
 		
@@ -204,6 +207,13 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 		double val = 0;
 		
 		return val;
+		
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		ItemVenda iv = ivModel.getItemVendaByRow(tableItemVenda.getSelectedRow());
 		
 	}
 }

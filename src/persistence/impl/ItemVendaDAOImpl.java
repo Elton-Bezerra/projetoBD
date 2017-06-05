@@ -29,6 +29,8 @@ public class ItemVendaDAOImpl implements IDAOImpl<ItemVenda>{
 		}
 	}
 	
+	
+	
 	@Override
 	public void insert(ItemVenda classe) {
 		String sql = "insert into ItemVenda values (?, ?, ?, ?)";
@@ -133,6 +135,41 @@ public class ItemVendaDAOImpl implements IDAOImpl<ItemVenda>{
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 
+			ResultSet rs = stmt.executeQuery();
+			list.clear();
+			
+			while(rs.next()){
+				ItemVenda iv = new ItemVenda();
+				PecaDAOImpl pdao = new PecaDAOImpl();
+				Peca p = pdao.searchById(rs.getInt("id"));
+				
+				iv.setId(rs.getInt("id"));
+				iv.setPeca(p);
+				iv.setQtd(rs.getInt("quantidade"));
+				iv.setSubTotal(rs.getDouble("subTotal"));
+				
+				list.add(iv);
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return null;
+	}
+	
+	
+	public List<ItemVenda> searchByVendas(int venda) {
+		String sql = "select p.id, p.nome as nome, iv.qtd as quantidade, iv.subtotal as subTotal"
+				+ " from ItemVenda iv"
+				+ " INNER JOIN Peca p"
+				+ " ON iv.peca = p.id" 
+				+ " INNER JOIN Venda v"
+				+ " ON iv.venda = v.id "
+				+ " where v.id = ?";
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, venda);
 			ResultSet rs = stmt.executeQuery();
 			list.clear();
 			

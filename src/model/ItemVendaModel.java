@@ -9,13 +9,11 @@ import javax.swing.table.TableModel;
 
 import persistence.GenericDAO;
 import persistence.impl.ItemVendaDAOImpl;
-import persistence.impl.PecaDAOImpl;
 import persistence.impl.VendaDAOImpl;
 
 public class ItemVendaModel implements TableModel {
 
 	private List<ItemVenda> lista = new ArrayList<ItemVenda>();
-	private List<ItemVenda> lst = new ArrayList<ItemVenda>();
 	Connection con;
 	public ItemVendaModel() {
 		// TODO Auto-generated constructor stub
@@ -24,7 +22,12 @@ public class ItemVendaModel implements TableModel {
 		ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
 		lista = ivdao.listarTodos();		
 	}
-
+	
+	public void atualizaLista(int venda){
+		ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
+		lista = ivdao.searchByVendas(venda);			
+	}
+	
 	@Override
 	public void addTableModelListener(TableModelListener l) {
 		// TODO Auto-generated method stub
@@ -100,5 +103,10 @@ public class ItemVendaModel implements TableModel {
 		ivdao.inserirItens(l);
 	}
 		
+	
+	public ItemVenda getItemVendaByRow(int row) { 
+		atualizaLista(row);
+		return lista.get(row);
+	}
 
 }
