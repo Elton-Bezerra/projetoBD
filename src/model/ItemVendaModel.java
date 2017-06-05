@@ -105,7 +105,6 @@ public class ItemVendaModel implements TableModel {
 		
 	
 	public ItemVenda getItemVendaByRow(int row) { 
-		atualizaLista(row);
 		return lista.get(row);
 	}
 
