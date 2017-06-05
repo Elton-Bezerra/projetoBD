@@ -61,7 +61,7 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 	public TelaVenda() {
 		setClosable(true);
 		setTitle("Tela de Venda");
-		setBounds(100, 100, 450, 396);
+		setBounds(100, 100, 450, 465);
 		getContentPane().setLayout(null);
 		
 		JLabel lblPeça = new JLabel("Pe\u00E7a:");
@@ -94,7 +94,7 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 		tfQtd.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 288, 416, 67);
+		scrollPane.setBounds(12, 332, 416, 92);
 		getContentPane().add(scrollPane);
 		
 		tableItemVenda = new JTable();
@@ -143,7 +143,7 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 		getContentPane().add(lblNVenda);
 		
 		JScrollPane spVenda = new JScrollPane();
-		spVenda.setBounds(12, 203, 412, 74);
+		spVenda.setBounds(12, 203, 412, 118);
 		getContentPane().add(spVenda);
 		
 		tableVenda = new JTable();
