@@ -15,7 +15,7 @@ import persistence.impl.VendaDAOImpl;
 public class ItemVendaModel implements TableModel {
 
 	private List<ItemVenda> lista = new ArrayList<ItemVenda>();
-	private List<ItemVenda> lst;
+	private List<ItemVenda> lst = new ArrayList<ItemVenda>();
 	Connection con;
 	public ItemVendaModel() {
 		// TODO Auto-generated constructor stub
@@ -24,14 +24,7 @@ public class ItemVendaModel implements TableModel {
 		ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
 		lista = ivdao.listarTodos();		
 	}
-	
-	public ItemVendaModel(ArrayList<ItemVenda> lst) {
-		// TODO Auto-generated constructor stub
-		GenericDAO gd = GenericDAO.getInstance();
-		con = gd.getConnection();
-		ItemVendaDAOImpl ivdao = new ItemVendaDAOImpl();
-		this.lst = ivdao.listarTodos();		
-	}
+
 	@Override
 	public void addTableModelListener(TableModelListener l) {
 		// TODO Auto-generated method stub
@@ -71,6 +64,7 @@ public class ItemVendaModel implements TableModel {
 		return lista.size();
 	}
 
+	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
@@ -105,9 +99,6 @@ public class ItemVendaModel implements TableModel {
 		}
 		ivdao.inserirItens(l);
 	}
-	public void addRow(ItemVenda iv){
-		this.addRow(iv);
-	}
-	
+		
 
 }

@@ -176,13 +176,19 @@ public class TelaVenda extends JInternalFrame implements ActionListener {
 			iv.setQtd(Integer.parseInt(tfQtd.getText()));
 			iv.setSubTotal(iv.getQtd() * p.getValor());
 			itens.add(iv);
+			atualizarTableItem();
 			System.out.println(itens.get((itens.size()-1)).getSubTotal());
 		}
 		
 	}
 	
-	
 	public void atualizarTableItem(){
+		tableItemVenda.invalidate();
+		tableItemVenda.revalidate();
+		tableItemVenda.repaint();
+	}
+	
+	public void atualizarTableVenda(){
 		tableVenda.invalidate();
 		tableVenda.revalidate();
 		tableVenda.repaint();

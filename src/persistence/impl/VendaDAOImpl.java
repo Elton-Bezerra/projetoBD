@@ -134,7 +134,6 @@ public class VendaDAOImpl implements IDAOImpl<Venda>{
 				v.setId(rs.getInt("id"));
 				v.setDataVenda(rs.getDate("dataVenda"));				
 				v.setValorTotal(rs.getDouble("valorTotal"));
-				System.out.println(rs.getDouble("valorTotal"));
 				list.add(v);
 			}
 			
